@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=install with apt package manager
+Exec=install-with-apt %U
+Terminal=true
+NoDisplay=true
+StartupNotify=true
+MimeType=application/vnd.debian.binary-package;
+Icon=terminal

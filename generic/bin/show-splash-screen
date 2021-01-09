@@ -1,0 +1,13 @@
+#!/bin/bash
+if [ $UID != 0 ]; then
+  sudo $0
+  exit
+fi
+
+plymouthd
+plymouth --show-splash
+for ((I=0; I<10; I++)); do
+  sleep 1
+  sudo plymouth --update=test$I
+done
+plymouth --quit

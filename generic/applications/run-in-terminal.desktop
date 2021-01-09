@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Run in Terminal
+Exec=run-in-terminal %f
+Terminal=true
+NoDisplay=true
+StartupNotify=true
+MimeType=application/x-shellscript;
+Icon=terminal

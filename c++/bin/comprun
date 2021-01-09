@@ -1,0 +1,8 @@
+#!/bin/bash
+infile=$(realpath "$@")
+outfile=${infile%.*}
+
+if c++ "${infile}" -o "${outfile}"; then
+	echo "Compiled successfully! Running..."
+	"${outfile}"
+fi

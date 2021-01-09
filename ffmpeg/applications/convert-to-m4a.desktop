@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Convert to audio (m4a)
+Exec=convert-to-m4a %F
+Terminal=true
+NoDisplay=true
+Icon=audio-x-generic

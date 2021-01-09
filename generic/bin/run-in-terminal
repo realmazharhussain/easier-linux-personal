@@ -1,0 +1,8 @@
+#!/bin/bash
+dir=$(dirname "$@")
+file=$(basename "$@")
+cd "$dir"
+./"$file"
+echo -e "\nPress Enter."
+read
+

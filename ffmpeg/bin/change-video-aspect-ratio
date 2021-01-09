@@ -1,0 +1,86 @@
+#!/bin/bash
+
+#######################################################
+#                                                     #
+#   A bash script to change aspect ratio of videos    #
+#   without updating their time/date of modification  #
+#                                                     #
+#######################################################
+
+
+# Check availability of ffmpeg
+if ! which ffmpeg &> /dev/null
+then
+  
+  # Tell user that ffmpeg is not found
+  echo "'ffmpeg' is not installed. Please! install it first."
+  
+  # Check if users distro is Debian based by checking presence of apt
+  if which apt &> /dev/null
+  then
+	
+	# Tell the install command for ffmpeg to users of Debian based distros
+	echo "Type 'sudo apt install ffmpeg' to install it."
+  fi
+else
+  
+  # Check if there are at least two arguments
+  if [[ -z $2 ]]; then
+	
+	# Show script usage with example if no. of arguments is less than two
+	echo -e "Usage: aspect [aspect-ratio] [file]"
+	echo -e "Example: aspect 16:9 ~/video.mp4"
+	echo -e "Accepted aspect ratio values are of the form:"
+	echo -e "    A decimal/non-decimal number\te.g. \"2.37\" or \"2\""
+	echo -e "    Ratio of two non-decimal numbers\te.g. \"16:9\""
+  else
+	
+	# Set 1st argument as value of variable "aspect"
+	aspect=$1
+	
+	# Remove 1st argument and shift arguments 1 step down i.e.
+	# 2nd argument becomes 1st, 3rd becomes 2nd and so on
+	shift
+	
+	# Find and set file's directory as value of variable "dir"
+	dir=$(dirname "$@")
+	
+	# Find and set filename as value of variable "file"
+	file=$(basename "$@")
+	
+	# Create new file with provided aspect ratio using ffmpeg
+	if ffmpeg -i "${dir}/${file}" -c copy -map 0 -aspect $aspect "${dir}/2${file}" &> /dev/null
+	then
+	  
+	  # If ffmpeg command runs successfully, tell user
+	  echo -e "Aspect ratio of \"${file}\" is changed."
+	  
+	  # Change modification date of newly created file to modification date of original file
+	  touch -m --reference="${dir}/${file}" "${dir}/2${file}"
+	  
+	  # Check if new file is smaller than original file
+	  if [ $(stat -c %s "${dir}/2${file}") -lt $(stat -c %s "${dir}/${file}") ]
+	  then
+		
+		# If new file is smaller, then don't remove original file and tell user
+		echo "But file is saved with a new name becuase new file's"
+		echo "size is less than the original file's size."
+	  else
+		
+		# If new file is not smaller than original one, then everything must have gone right.
+		# So, remove original file and rename new file to original file's name and tell user
+		rm "${dir}/${file}"
+		mv "${dir}/2${file}" "${dir}/${file}"
+		echo "Job Done!!!"
+	  fi
+	else
+	  
+	  # If ffmpeg command didn't run successfully, tell user about it
+	  echo -e "\nError Changing The Aspect Ratio!!!"
+	  
+	  # Also remove any file created by ffmpeg
+	  rm "${dir}/2${file}" &> /dev/null
+	  
+	fi
+  fi
+fi

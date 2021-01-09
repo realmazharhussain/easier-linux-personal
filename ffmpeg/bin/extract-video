@@ -1,0 +1,12 @@
+#!/bin/bash
+for filename in "$@"; do
+  infile=$(realpath "$filename")
+  outfile="${infile%.*} (Video Only).${infile##*.}"
+  if ffmpeg -i "$infile" -c copy -map 0:v "$outfile"; then
+    touch -m --reference="$infile" "$outfile"
+  else
+    rm "$outfile"
+    echo -e "\nPress Enter."
+    read
+  fi
+done

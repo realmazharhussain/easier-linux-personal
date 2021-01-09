@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Run as root
+Exec=run-as-root %f
+Terminal=true
+NoDisplay=true
+StartupNotify=true
+MimeType=application/x-shellscript;
+Icon=terminal

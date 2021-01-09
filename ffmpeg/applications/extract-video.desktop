@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Extract Video (without audio)
+Exec=extract-video %F
+Terminal=true
+NoDisplay=true
+Icon=video-x-generic

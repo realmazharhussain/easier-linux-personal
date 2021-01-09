@@ -1,0 +1,46 @@
+# My custom aliases
+
+alias s=sudo
+
+if which apt > /dev/null; then
+  alias ud='sudo apt update'
+  alias lug='apt list --upgradable'
+  alias ug='sudo apt upgrade'
+  alias fug='sudo apt full-upgrade'
+
+  alias list='apt list'
+  alias show='apt show'
+
+  alias ins='sudo apt install'
+  alias lins='apt list --installed'
+  alias rmv='sudo apt remove'
+  alias armv='sudo apt autoremove'
+  alias purge='sudo apt purge'
+
+  #alias apt='sudo apt'
+  #alias dpkg='sudo dpkg'
+  alias dins='sudo dpkg -i'
+fi
+
+#alias chmod='sudo chmod'
+#alias chown='sudo chown'
+
+#which wine > /dev/null && alias cmd='wine start cmd'
+which wine > /dev/null && alias cmd='wine cmd'
+
+#alias py3=python3
+#alias python=python3
+
+#Disabled in .bashrc file
+
+alias ls='ls --color=auto'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+alias ll='ls -Al'
+alias la='ls -A'
+alias l='ls -CF'
+

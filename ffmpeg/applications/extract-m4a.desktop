@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Extract m4a audio
+Exec=extract-m4a %F
+Terminal=true
+NoDisplay=true
+Icon=audio-x-generic

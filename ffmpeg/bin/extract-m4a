@@ -1,0 +1,12 @@
+#!/bin/bash
+for filename in "$@"; do
+  infile=$(realpath "$filename")
+  outfile=${infile%.*}.m4a
+  if ffmpeg -i "$infile" -c copy -map 0:a "$outfile"; then
+    touch -m --reference="$infile" "$outfile"
+  else
+    rm "$outfile"
+    echo -e "\nPress Enter."
+    read
+  fi
+done
