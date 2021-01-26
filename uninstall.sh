@@ -24,7 +24,7 @@ autostartdir="$root/etc/xdg/autostart"
 
 echo uninstalling easier-linux ...
 {
-  rm "$autostartdir"/wineboot.desktop
+  rm "$autostartdir"/wine{,boot}.desktop
   rm "$appdir"/{{C,c}onvert-to{-audio,m4a,video},extract-{video,m4a{-audio,}},run-in-terminal,run-as-root,install-with-apt}.desktop
   rm "$bindir"/{{C,c}onvert-to{-audio,m4a,video},extract-{video,m4a{-audio,}},run-in-terminal,run-as-root,install-with-apt,srch{i,},show-splash{-screen,},aspect,change-video-aspect-ratio,comprun}
   rm "$root"/usr/share/gtksourceview-{3.0,4}/styles/classicMod.xml
