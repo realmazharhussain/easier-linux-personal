@@ -28,10 +28,10 @@ else
 fi
 
 ./generic/install-system.sh
-which gedit > /dev/null && ./gedit/install.sh
-which apt > /dev/null && ./debian/install.sh
-which c++ > /dev/null && ./c++/install.sh
-which ffmpeg > /dev/null && ./ffmpeg/install.sh
-which wine > /dev/null && ./wine/install.sh
+which gedit &> /dev/null && ./gedit/install.sh
+which apt &> /dev/null && ./debian/install.sh
+which c++ &> /dev/null && ./c++/install.sh
+which ffmpeg &> /dev/null && ./ffmpeg/install.sh
+which wine &> /dev/null && ./wine/install.sh
 
 echo -e "\ndone."
