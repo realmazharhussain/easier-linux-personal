@@ -1,0 +1,16 @@
+#!/bin/bash
+for file in "$@"; do
+  if ! touch "$file" 2> /dev/null; then
+     if ! sudo touch "$file" 2> /dev/null; then
+       echo "could not find or create file '$file'"
+       notfound=true
+     fi
+  fi
+  if [ "$notfound" != "true" ]; then
+    if [ -w "$file" ]; then
+      gedit "$file" 2>/dev/null &
+    else
+      gedit admin://"$file" 2>/dev/null &
+    fi
+  fi
+done
