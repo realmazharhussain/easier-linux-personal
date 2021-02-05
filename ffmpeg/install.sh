@@ -1,5 +1,5 @@
 #!/bin/bash
-sdir=$(realpath $(dirname $0))
+sdir="$(realpath "$(dirname "$0")")"
 if [[ $UID = '0' ]]; then
   echo 'installing ffmpeg files ...'
   mkdir -p "$root"/usr/local/bin/ "$root"/usr/share/applications/
@@ -7,5 +7,5 @@ if [[ $UID = '0' ]]; then
   cp "$sdir"/bin/* "$root"/usr/local/bin/
   cp "$sdir"/applications/*.desktop "$root"/usr/share/applications/
 else
-  sudo --preserve-env=root $0
+  sudo --preserve-env=root "$0"
 fi

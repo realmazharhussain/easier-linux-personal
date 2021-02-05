@@ -1,10 +1,11 @@
 #!/bin/bash
-sdir=$(realpath $(dirname $0))
+
+sdir="$(realpath "$(dirname "$0")")"
 
 if [ -z "$home" ]; then
   if [ $UID != 0 ]; then
     echo installing user files for $USER ...
-    [ -f $HOME/.bash_aliases ] && [ ! -f $HOME/.bash_aliases.original ] && cp $HOME/.bash_aliases $HOME/.bash_aliases.original
+    [ -f "$HOME"/.bash_aliases ] && [ ! -f "$HOME"/.bash_aliases.original ] && cp "$HOME"/.bash_aliases "$HOME"/.bash_aliases.original
     cp "$sdir"/home/bash_aliases ~/.bash_aliases
   else
     cd "$sdir"/home

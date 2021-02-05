@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $UID != 0 ]; then
-  sudo --preserve-env=root,home $0
+  sudo --preserve-env=root,home "$0"
   exit $?
 fi
 
@@ -21,7 +21,7 @@ fi
 
 echo
 
-if [ ! -z $SUDO_USER ]; then
+if [ -n "$SUDO_USER" ]; then
   su $SUDO_USER -c ./generic/install-user.sh
 else
   ./generic/install-user.sh

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sdir=$(realpath $(dirname $0))
+sdir="$(realpath "$(dirname "$0")")"
 binDir="$root"/usr/local/bin
 appsDir="$root"/usr/share/applications
 gtk4styleDir="$root"/usr/share/gtksourceview-4/styles
@@ -15,5 +15,5 @@ if [[ $UID = '0' ]]; then
   cp "$sdir"/bin/* "$binDir"/
   cp "$sdir"/applications/*.desktop "$appsDir"/
 else
-  sudo --preserve-env=root $0
+  sudo --preserve-env=root "$0"
 fi

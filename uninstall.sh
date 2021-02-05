@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $UID != '0' ]; then
-  sudo --preserve-env=root,home $0
+  sudo --preserve-env=root,home "$0"
   exit $?
 fi
 

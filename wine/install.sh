@@ -1,6 +1,6 @@
 #!/bin/bash
 if [[ $UID = '0' ]]; then
-  sdir=$(realpath $(dirname $0))
+  sdir="$(realpath "$(dirname "$0")")"
   echo 'installing wine files ...'
   mkdir -p "$root"/{usr/share/applications,usr/local/bin,etc/xdg/autostart}
   cp "$sdir"/applications/*.desktop "$root"/usr/share/applications/
@@ -17,5 +17,5 @@ if [[ $UID = '0' ]]; then
     update-icon-caches "$root"/usr/share/icons/hicolor &> /dev/null
   fi
 else
-  sudo --preserve-env=root $0
+  sudo --preserve-env=root "$0"
 fi
