@@ -14,8 +14,8 @@ else
 fi
 
 if [ ! -z "$home" ]; then
-  [ ! -d "$home" ] && mkdir -p "$home" && echo created dirctory "$home"
-  home=$(realpath "$home")
+  [ ! -d "$home" ] && mkdir -p "$home" && chmod 777 "$home" && echo created dirctory "$home"
+  home="$(realpath "$home")"
   echo target home dirctory = "$home"
 fi
 
