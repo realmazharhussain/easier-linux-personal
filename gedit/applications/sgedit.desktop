@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Smart GEdit
+Comment=Edit text files
+Exec=sgedit %F
+Terminal=false
+Type=Application
+StartupNotify=true
+MimeType=text/plain;
+Icon=org.gnome.gedit
+Categories=GNOME;GTK;Utility;TextEditor;
+Keywords=Text;Editor;Plaintext;Write;gedit;Smart;
+NoDisplay=true

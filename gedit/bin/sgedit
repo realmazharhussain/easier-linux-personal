@@ -1,0 +1,9 @@
+#!/bin/sh
+for file in "$@"; do
+  file="$(realpath "$file")"
+  if [ -w "$file" ]; then
+    gedit "$file" 2>/dev/null & 
+  else
+    gedit admin://"$file" 2>/dev/null &
+  fi
+done
