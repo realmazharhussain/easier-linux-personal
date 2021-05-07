@@ -33,5 +33,6 @@ which apt &> /dev/null && ./debian/install.sh
 which c++ &> /dev/null && ./c++/install.sh
 which ffmpeg &> /dev/null && ./ffmpeg/install.sh
 which wine &> /dev/null && ./wine/install.sh
+which youtube-dl &> /dev/null && ./youtube-dl/install.sh
 
 echo -e "\ndone."
