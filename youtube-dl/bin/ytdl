@@ -3,7 +3,7 @@ youtube-dl -F "$@"
 echo -e -n "\nEnter Your Choice: "
 read -r choice
 echo
-args=("--no-mtime" "--output" "%(name)s.%(ext)s")
+args=("--no-mtime" "--output" "%(title)s.%(ext)s")
 case $choice in
 	140 | 249 | 250 | 251 )
 		args=("${args[@]}" "--embed-thumbnail")
