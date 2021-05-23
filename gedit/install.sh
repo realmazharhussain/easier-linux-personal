@@ -1,10 +1,14 @@
 #!/bin/bash
 
 sdir="$(realpath "$(dirname "$0")")"
-binDir="$root"/usr/local/bin
-appsDir="$root"/usr/share/applications
-gtk4styleDir="$root"/usr/share/gtksourceview-4/styles
-gtk3styleDir="$root"/usr/share/gtksourceview-3.0/styles
+
+[ -z "$DESTDIR" ] && DESTDIR=/
+[ -z "$PREFIX" ] && PREFIX=/usr/local
+
+binDir="$DESTDIR"/$PREFIX/bin
+appsDir="$DESTDIR"/$PREFIX/share/applications
+gtk4styleDir="$DESTDIR"/$PREFIX/share/gtksourceview-4/styles
+gtk3styleDir="$DESTDIR"/$PREFIX/share/gtksourceview-3.0/styles
 
 if [[ $UID = '0' ]]; then
   echo 'installing gEdit files ...'
@@ -15,5 +19,5 @@ if [[ $UID = '0' ]]; then
   cp "$sdir"/bin/* "$binDir"/
   cp "$sdir"/applications/*.desktop "$appsDir"/
 else
-  sudo --preserve-env=root "$0"
+  sudo --preserve-env=DESTDIR,PREFIX "$0"
 fi

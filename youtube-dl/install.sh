@@ -2,10 +2,14 @@
 sdir="$(realpath "$(dirname "$0")")"
 if [[ $UID = '0' ]]; then
   echo 'installing youtube-dl files ...'
-  mkdir -p "$root"/usr/local/bin/ #"$root"/usr/share/applications/
+  
+  [ -z "$DESTDIR" ] && DESTDIR=/
+  [ -z "$PREFIX" ] && PREFIX=/usr/local
+
+  mkdir -p "$DESTDIR"/$PREFIX/bin/ #"$DESTDIR"/$PREFIX/share/applications/
   chmod a+x "$sdir"/bin/*
-  cp "$sdir"/bin/* "$root"/usr/local/bin/
-#  cp "$sdir"/applications/*.desktop "$root"/usr/share/applications/
+  cp "$sdir"/bin/* "$DESTDIR"/$PREFIX/bin/
+#  cp "$sdir"/applications/*.desktop "$DESTDIR"/$PREFIX/share/applications/
 else
-  sudo --preserve-env=root "$0"
+  sudo --preserve-env=DESTDIR,PREFIX "$0"
 fi

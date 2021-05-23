@@ -1,16 +1,19 @@
 #!/bin/bash
 
 if [ $UID != 0 ]; then
-  sudo --preserve-env=root,home "$0"
+  sudo --preserve-env=DESTDIR,PREFIX,home "$0"
   exit $?
 fi
 
-if [ ! -z "$root" ]; then
-  [ ! -d "$root" ] && mkdir -p "$root" && echo created dirctory "$root"
-  root=$(realpath "$root")
-  echo target root dirctory = "$root"
+[ -z "$DESTDIR" ] && DESTDIR=/
+[ -z "$PREFIX" ] && PREFIX=/usr/local
+
+if [ ! -z "$DESTDIR" ]; then
+  [ ! -d "$DESTDIR" ] && mkdir -p "$DESTDIR" && echo created dirctory "$DESTDIR"
+  DESTDIR=$(realpath "$DESTDIR")
+  echo target DESTDIR dirctory = "$DESTDIR"
 else
-  echo target root dirctory = /
+  echo target DESTDIR dirctory = /
 fi
 
 if [ ! -z "$home" ]; then
