@@ -1,5 +1,5 @@
 #!/bin/bash
-youtube-dl -F "$@"
+youtube-dl -F "$@" | tail -n +4
 echo -e -n "\nEnter Your Choice: "
 read -r choice
 echo

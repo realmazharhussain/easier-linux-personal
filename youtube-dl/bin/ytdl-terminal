@@ -1,0 +1,5 @@
+#!/bin/bash
+link="$1"
+link="${link%%&*}"
+cd ~/Downloads
+gnome-terminal -- sh -c "youtube-dl -e '$link'; ytdl '$link'"
