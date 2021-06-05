@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $UID != 0 ]; then
-  sudo --preserve-env=DESTDIR,PREFIX,home "$0"
+  sudo --preserve-env=DESTDIR,PREFIX,home "$0" "$@"
   exit $?
 fi
 
@@ -24,10 +24,12 @@ fi
 
 echo
 
-if [ -n "$SUDO_USER" ]; then
-  su $SUDO_USER -c ./generic/install-user.sh
-else
+if [ "$1" != '--system-only' ]; then
+  if [ -n "$SUDO_USER" ]; then
+    su $SUDO_USER -c ./generic/install-user.sh
+  else
   ./generic/install-user.sh
+  fi
 fi
 
 ./generic/install-system.sh
