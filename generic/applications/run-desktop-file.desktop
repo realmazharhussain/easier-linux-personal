@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Run Application
+Comment=Run .desktop files
+Exec=run-desktop-file %f
+TryExec=run-desktop-file
+Terminal=false
+Icon=x-executable
+Type=Application
+MimeType=application-x-desktop
+StartupNotify=true
+NoDisplay=true
