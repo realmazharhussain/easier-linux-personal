@@ -2,6 +2,11 @@
 getvalue()
 {
   varName="$1"
+  if [ ! -v "$varName" ]
+  then
+    echo "variable '$varName' not set!" >&2
+    exit 2
+  fi
   varRecurse="$2"
   [ -z "$varRecurse" ] && varRecurse=1
   for ((i=0;i<"$varRecurse";i++))
