@@ -1,9 +1,44 @@
 #!/bin/bash
 getvalue()
 {
-  for var in "$@"; do
-    declare -p $var | cut -d "=" -f 2 | sed -E 's/^"|"$//g'
+  varName="$1"
+  varRecurse="$2"
+  [ -z "$varRecurse" ] && varRecurse=1
+  for ((i=0;i<"$varRecurse";i++))
+  do
+    eval varName='$'"$varName"
   done
+  echo $varName
+}
+showHelp()
+{
+  bold="$(tput bold)"
+  normal="$(tput sgr0)"
+  echo -n "getvalue: get value of a variable recursively
+Usage: getvalue <variable> [No. of recursions]
+Example:$bold
+  a=b
+  b=c
+  c=d
+  getvalue a$normal
+    Output: b$bold
+  getvalue a 3$normal
+    Output: d
+"
+}
+main(){
+  case "$1" in
+    --help|help|-h|h)
+      showHelp
+      ;;
+    '')
+      echo "No variable name provided!" >&2
+      exit 1
+      ;;
+    *)
+      getvalue "$@"
+      ;;
+  esac
 }
 
-getvalue "$@"
+main "$@"
