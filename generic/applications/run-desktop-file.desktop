@@ -6,6 +6,6 @@ TryExec=run-desktop-file
 Terminal=false
 Icon=x-executable
 Type=Application
-MimeType=application-x-desktop
+MimeType=application/x-desktop
 StartupNotify=true
 NoDisplay=true

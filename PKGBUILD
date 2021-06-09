@@ -1,6 +1,6 @@
 # Maintainer: Mazhar Hussain <mmazharhussainkgb1145@gmail.com>
 pkgname=easier-linux-git
-pkgver=28.7ca2e32
+pkgver=29.e288c94
 pkgrel=1
 pkgdesc="Using Linux made easier"
 arch=(any)
