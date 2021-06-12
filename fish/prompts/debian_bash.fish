@@ -88,7 +88,7 @@ function fish_prompt
             set Dirty "$yellow✗"
         end
         set -l repo_branch $red(_repo_branch_name $repo_type)
-        set repo_info "$normal:$green$repo_type:($repo_branch$Dirty$blue)"
+        set repo_info "$normal:$green$repo_type($repo_branch$Dirty$blue)"
 
     end
 
