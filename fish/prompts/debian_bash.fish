@@ -81,14 +81,15 @@ function fish_prompt
 
     set -l repo_info
     if set -l repo_type (_repo_type)
-        set -l repo_branch $red(_repo_branch_name $repo_type)
-        set repo_info "$normal:$green$repo_type:($repo_branch$blue)"
-
+    
         set -l dirty (_is_repo_dirty $repo_type)
+        set -l Dirty ''
         if test -n "$dirty"
-            set -l dirty "$yellow ✗"
-            set repo_info "$repo_info$dirty"
+            set Dirty "$yellow✗"
         end
+        set -l repo_branch $red(_repo_branch_name $repo_type)
+        set repo_info "$normal:$green$repo_type:($repo_branch$Dirty$blue)"
+
     end
 
     echo -n -s $user@$hostName $normal':'$cwd $repo_info $user_sign ' '
