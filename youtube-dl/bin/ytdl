@@ -9,7 +9,7 @@ case $choice in
 		args=("${args[@]}" "--embed-thumbnail")
 		;;
 	*)
-		args=("${args[@]}" "--sub-lang" "en,ur" "--write-sub" "--embed-subs")
+		args=("${args[@]}" "--sub-lang" "en,en-GB,ur" "--write-sub" "--embed-subs")
 		;;
 esac
 [ -n "$choice" ] && youtube-dl "${args[@]}" -f "$choice" "$@"
