@@ -73,18 +73,21 @@ function fish_prompt
         set user_sign_color "$red"
     end
 
-    set -l user $green$USER
 
-    set -l user_sign "$user_sign_color\$"
-    if test "$USER" = root
-        set user $brred$USER
-        set user_sign "$user_sign_color#"
-    end
-    
     set -g fish_prompt_pwd_dir_length 0
     set -l cwd $blue(prompt_pwd)
     
     set -l hostName $green(prompt_hostname)
+    
+    set -l user $green$USER
+    set -l at_sign {$normbold}@
+
+    set -l user_sign "$user_sign_color\$"
+    if test "$USER" = root
+#       set user $brred$USER
+        set at_sign {$brred}@
+        set user_sign "$user_sign_color#"
+    end
     
 
     set -l repo_info
@@ -100,5 +103,5 @@ function fish_prompt
 
     end
 
-    echo -n -s $user{$normbold}@$hostName $normal':'$cwd $repo_info $user_sign ' '
+    echo -n -s $user $at_sign $hostName $normal':'$cwd $repo_info $user_sign ' '
 end
