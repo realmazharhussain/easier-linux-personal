@@ -80,12 +80,12 @@ function fish_prompt
     set -l hostName $green(prompt_hostname)
     
     set -l user $green$USER
-    set -l at_sign {$normbold}@
+    set -l at_sign {$normal}@
 
     set -l user_sign "$user_sign_color\$"
     if test "$USER" = root
 #       set user $brred$USER
-        set at_sign {$brred}@
+        set at_sign {$red}@
         set user_sign "$user_sign_color#"
     end
     
