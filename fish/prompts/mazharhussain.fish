@@ -1,9 +1,8 @@
-# Defined interactively
 function fish_prompt
     set -l __last_command_exit_status $status
 
-    if not set -q -g __fish_debain_bash_prompt_functions_defined
-        set -g __fish_debian_bash_prompt_functions_defined
+    if not set -q -g __fish_mazharhussain_functions_defined
+        set -g __fish_mazharhussain_functions_defined
         function _git_branch_name
             set -l branch (git symbolic-ref --quiet HEAD 2>/dev/null)
             if set -q branch[1]
@@ -55,20 +54,30 @@ function fish_prompt
         end
     end
 
+    set -l normal (set_color normal)
+    set -l bold (set_color -o)
+    set -l normbold (set_color -o normal)
     set -l cyan (set_color -o cyan)
     set -l yellow (set_color -o yellow)
     set -l red (set_color -o red)
     set -l green (set_color -o green)
     set -l blue (set_color -o blue)
-    set -l normal (set_color normal)
+    set -l brcyan (set_color -o brcyan)
+    set -l bryellow (set_color -o bryellow)
+    set -l brred (set_color -o brred)
+    set -l brgreen (set_color -o brgreen)
+    set -l brblue (set_color -o brblue)
 
     set -l user_sign_color "$normal"
     if test $__last_command_exit_status != 0
         set user_sign_color "$red"
     end
 
+    set -l user $green$USER
+
     set -l user_sign "$user_sign_color\$"
     if test "$USER" = root
+        set user $brred$USER
         set user_sign "$user_sign_color#"
     end
     
@@ -77,7 +86,6 @@ function fish_prompt
     
     set -l hostName $green(prompt_hostname)
     
-    set -l user $green$USER
 
     set -l repo_info
     if set -l repo_type (_repo_type)
@@ -92,5 +100,5 @@ function fish_prompt
 
     end
 
-    echo -n -s $user@$hostName $normal':'$cwd $repo_info $user_sign ' '
+    echo -n -s $user{$normbold}@$hostName $normal':'$cwd $repo_info $user_sign ' '
 end
