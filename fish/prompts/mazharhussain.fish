@@ -68,10 +68,10 @@ function fish_prompt
     set -l brgreen (set_color -o brgreen)
     set -l brblue (set_color -o brblue)
 
-    set -l user_sign_color "$normal"
-    set -l command_status ''
+    set -l command_status
+    set -l user_sign_color $normal
     if test $__last_command_exit_status != 0
-        # set user_sign_color "$red"
+        set user_sign_color $red
         set command_status $red$__last_command_exit_status$normal"|"
     end
 
@@ -86,8 +86,7 @@ function fish_prompt
 
     set -l user_sign "$user_sign_color\$"
     if test "$USER" = root
-#       set user $brred$USER
-        set at_sign {$red}@
+        set user $red$USER
         set user_sign "$user_sign_color#"
     end
     
