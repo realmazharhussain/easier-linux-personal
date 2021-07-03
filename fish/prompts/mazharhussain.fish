@@ -69,8 +69,10 @@ function fish_prompt
     set -l brblue (set_color -o brblue)
 
     set -l user_sign_color "$normal"
+    set -l command_status ''
     if test $__last_command_exit_status != 0
-        set user_sign_color "$red"
+        # set user_sign_color "$red"
+        set command_status $red$__last_command_exit_status$normal"|"
     end
 
 
@@ -103,5 +105,5 @@ function fish_prompt
 
     end
 
-    echo -n -s $user $at_sign $hostName $normal':'$cwd $repo_info $user_sign ' '
+    echo -n -s $command_status $user $at_sign $hostName $normal':'$cwd $repo_info $user_sign ' '
 end
