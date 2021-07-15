@@ -6,7 +6,7 @@ main(){
   InputFiles=("$@")
   eval TryExec="$(grep -E "^TryExec=" "$DesktopFile" | sed 's|^TryExec=||g')"
   eval Exec=("$(grep -E "^Exec=" "$DesktopFile" | sed -E 's/^Exec=|%[UuFf]//g')")
-  [ -n "$TryExec" ] && [ ! -x "$TryExec" ] && exit 1
+  ! ( which "$TryExec" &>/dev/null || [ -x "$TryExec" ] ) && exit 1
   "${Exec[@]}" "${InputFiles[@]}"
 }
 

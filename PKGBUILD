@@ -23,6 +23,6 @@ pkgver() {
 package() {
 #    cd "${pkgname}"
     cd ..
-    DESTDIR="$pkgdir" PREFIX=/usr ./install.sh --system-only
+    DESTDIR="$pkgdir" PREFIX=/usr home="$pkgdir"/etc/skel ./install.sh
     rm "$pkgdir"/usr/share/applications/wine.desktop
 }
