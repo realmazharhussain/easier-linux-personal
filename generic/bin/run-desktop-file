@@ -5,9 +5,37 @@ main(){
   shift
   InputFiles=("$@")
   eval TryExec="$(grep -E "^TryExec=" "$DesktopFile" | sed 's|^TryExec=||g')"
-  eval Exec=("$(grep -E "^Exec=" "$DesktopFile" | sed -E 's/^Exec=|%[UuFf]//g')")
-  ! ( which "$TryExec" &>/dev/null || [ -x "$TryExec" ] ) && exit 1
-  "${Exec[@]}" "${InputFiles[@]}"
+  eval Exec=($(grep -E "^Exec=" "$DesktopFile" | sed -E 's/^Exec=//g'))
+  eval Path=("$(grep -E "^Path=" "$DesktopFile" | sed -E 's/^Path=//g')")
+  tempExec=("${Exec[@]}")
+  Exec=()
+  for ExecElem in "${tempExec[@]}"; do
+    if echo "$ExecElem" | grep %[UuFf] &>/dev/null; then
+      if [ -n "$InputFiles" ]; then
+        for file in "${InputFiles[@]}"; do
+          Exec=("${Exec[@]}" "${ExecElem/\%[UuFf]/$file}")
+        done
+      fi
+    else
+      Exec=("${Exec[@]}" "$ExecElem")
+    fi
+  done
+  if [ -z "${Exec}" ]; then
+    echo "No Exec attribute in '$Desktop'" >&2
+    exit 1
+  fi
+  if [ -n "$TryExec" ]; then
+    ! ( which "$TryExec" &>/dev/null || [ -x "$TryExec" ] ) && exit 2
+  fi
+  if [ -n "$Path" ]  ; then
+    if [ -d "$Path" ] || mkdir -p "$Path"; then
+      cd "$Path"
+    else
+      echo "Path '$Path' specified in '$DesktopFile' doesn't exist and can't be created!" >&2
+      exit 3
+    fi
+  fi
+  "${Exec[@]}"
 }
 
 main "$@"
