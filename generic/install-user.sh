@@ -22,6 +22,7 @@ if [ -f $HOME/.bash_aliases ]; then cp ./bash_aliases $HOME/.bash_aliases.easier
 else
   echo installing user files ...
   mkdir -p "$home"
+  chmod 755 "$home"
   if [ -f "$home"/.bash_aliases ]; then
     cp "$sdir"/home/bash_aliases "$home"/.bash_aliases.easier-linux
   else
