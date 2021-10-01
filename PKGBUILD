@@ -1,6 +1,6 @@
 # Maintainer: Mazhar Hussain <mmazharhussainkgb1145@gmail.com>
 pkgname=easier-linux-git
-pkgver=48.ba39b41
+pkgver=1.d63f85a
 pkgrel=1
 pkgdesc="Using Linux made easier"
 arch=(any)
@@ -24,5 +24,5 @@ package() {
 #    cd "${pkgname}"
     cd ..
     DESTDIR="$pkgdir" PREFIX=/usr home="$pkgdir"/etc/skel ./install.sh
-    rm "$pkgdir"/usr/share/applications/wine.desktop
+    rm -f "$pkgdir"/usr/share/applications/wine.desktop
 }
