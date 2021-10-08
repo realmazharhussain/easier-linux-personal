@@ -1,0 +1,36 @@
+#!/bin/bash
+pwd="$PWD"
+get_templates()
+{
+  cd ~/Templates
+  declare -g templates=()
+  for template in *; do
+    templates+=("${template%.*}")
+  done 
+  cd - 1>/dev/null
+}
+
+contains()
+{
+  first="$1"
+  shift
+  for elem in "$@"; do
+    [[ "$first" == "$elem" ]] && return 0
+  done
+  return 1
+}
+
+main()
+{
+  get_templates
+  for type in "$@"; do
+    if contains "$type" "${templates[@]}"; then 
+      cp -it "$pwd" ~/Templates/"$type".*
+    else
+      echo 'Template not found!!!' >&2
+      return 1
+    fi
+  done
+}
+
+main "$@"
