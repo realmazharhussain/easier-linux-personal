@@ -23,14 +23,14 @@ contains()
 main()
 {
   get_templates
-  for type in "$@"; do
-    if contains "$type" "${templates[@]}"; then 
-      cp -it "$pwd" ~/Templates/"$type".*
-    else
-      echo 'Template not found!!!' >&2
-      return 1
-    fi
-  done
+  type="$1"
+  filename="$2"
+  if contains "$type" "${templates[@]}"; then 
+    cp -i ~/Templates/"$type".* "$pwd"/"$filename"
+  else
+    echo 'Template not found!!!' >&2
+    return 1
+  fi
 }
 
 main "$@"
