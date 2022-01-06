@@ -79,9 +79,9 @@ function fish_prompt
     set -g fish_prompt_pwd_dir_length 0
     set -l cwd $brblue(prompt_pwd)
     
-    set -l hostName $green(prompt_hostname)
+    set -l hostName $brgreen(prompt_hostname)
     
-    set -l user $green$USER
+    set -l user $brgreen$USER
     set -l at_sign {$normal}@
 
     set -l user_sign "$user_sign_color\$"
@@ -100,9 +100,9 @@ function fish_prompt
             set Dirty "$yellow✗"
         end
         set -l repo_branch $red(_repo_branch_name $repo_type)
-        set repo_info "$normal:$green$repo_type$brblue($repo_branch$Dirty$brblue)"
+        set repo_info "$normal:$brgreen$repo_type$brblue($repo_branch$Dirty$brblue)"
 
     end
 
-    echo -n -s $command_status $user $at_sign $hostName $normal':'$cwd $repo_info $user_sign ' '
+    echo -n -s $command_status $user $at_sign $hostName $normal':' $cwd $repo_info $user_sign ' ' $normal
 end
