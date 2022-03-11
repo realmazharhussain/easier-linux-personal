@@ -26,7 +26,7 @@ main()
   type="$1"
   filename="$2"
   if contains "$type" "${templates[@]}"; then 
-    cp -i ~/Templates/"$type"* "$pwd"/"$filename"
+    cp -i ~/Templates/"$type"* "$filename"
   else
     echo 'Template not found!!!' >&2
     return 1
