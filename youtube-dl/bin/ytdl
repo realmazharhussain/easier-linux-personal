@@ -1,15 +1,15 @@
 #!/bin/bash
-youtube-dl -F "$@" | tail -n +4
+yt-dlp -F "$@" | tail -n +4
 echo -e -n "\nEnter Your Choice: "
 read -r choice
 echo
-args=("--no-mtime" "--output" "%(title)s.%(ext)s")
+args=(--no-mtime --output "%(title)s.%(ext)s")
 case $choice in
 	140 | 249 | 250 | 251 )
-		args=("${args[@]}" "--embed-thumbnail")
+		args=("${args[@]}" --embed-thumbnail)
 		;;
 	*)
-		args=("${args[@]}" "--all-subs" "--write-sub" "--embed-subs")
+		args=("${args[@]}" --sub-langs all,-live_chat --embed-subs)
 		;;
 esac
-[ -n "$choice" ] && youtube-dl "${args[@]}" -f "$choice" "$@"
+[ -n "$choice" ] && yt-dlp "${args[@]}" -f "$choice" "$@"
