@@ -2,4 +2,4 @@
 link="$1"
 link="${link%%&*}"
 cd ~/Downloads
-gnome-terminal -- sh -c "youtube-dl -e '$link'; ytdl '$link'"
+kgx -- sh -c "yt-dlp --print title '$link'; ytdl '$link'"
